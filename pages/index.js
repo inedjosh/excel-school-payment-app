@@ -87,9 +87,12 @@ className={styles.backgroundImg}
                 type: "spring",
               }}
             >
-              <a to="/" className={styles.link}>
-                View Prospect
+              <Link href="/prospect" className={styles.link}>
+               
+                 <a className={styles.link}>
+               View Prospect
               </a>
+              </Link>
               <a  href='https://www.excelgraceacademy.com' target='_blank' className={styles.link}>
                School Details
               </a>
