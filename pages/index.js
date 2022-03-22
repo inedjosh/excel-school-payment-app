@@ -31,7 +31,7 @@ function Home() {
         duration: 0.5,
       }}
     >
-      <a className={styles.mobileLink}  target='_blank'>View Prospect</a>
+      <Link href='/prospect' className={styles.mobileLink}  target='_blank'>View Prospect</Link>
       <a className={styles.mobileLink}  href='https://www.excelgraceacademy.com' target='_blank'>School Details</a>
       <div className={styles.mobileIconDiv}>
         <a href="https://facebook.com" target="_blank">
