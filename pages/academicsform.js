@@ -6,12 +6,9 @@ import Link from 'next/link'
 import { PaystackButton } from 'react-paystack'
 import { parseCookies} from './../helpers/index'
 import Router from 'next/router'
-
-
+import Axios from 'axios'
 
 function Form({data}) {
-
- 
 
   const [admissionClass, setAdmissionClass] = useState('')
   const [primarySchoolDate, setPrimarySchoolDate] = useState('')
@@ -19,17 +16,44 @@ function Form({data}) {
   const [lastClass, setLastClass] = useState('')
   const [reason, setReason] = useState('')
    const [error, setError] = useState(null)
-   const [formFilled, setFormFilled] = useState(false)
    const [success, setSuccess] = useState(false)
+   const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null)
+  const [btnPress, setBtnPress] = useState(false)
+  
+
+  // const uploadImage = (files) => {
+  //   console.log(files[0])
+   
+  //   form
+  // }
 
 
-  const handleSubmitButton = () => {
+  const handleSubmitButton = async () => {
     if(admissionClass.trim() === '' || lastClass.trim() === '' ||  reason.trim() === '' ){
       setError(true)
+      setImageUploaded(false)
+      
     }else{
       setError(false)
-setFormFilled(true)
-    }
+setBtnPress(true)
+ const formData = new FormData();
+ formData.append('file', image)
+ formData.append('upload_preset', 'eag-passport')
+
+
+
+     const data = await fetch('https://api.cloudinary.com/v1_1/beam-innovations/image/upload', {
+       method: 'POST',
+       body: formData
+     }).then((response) => {
+       setBtnPress(false)
+      return response.json()
+
+     })
+ setBtnPress(false)
+setImageUrl(data?.secure_url)
+  }
   }
 
   const parentData = JSON.parse(data.parentData)
@@ -38,7 +62,7 @@ console.log(parentData)
 console.log(studentData)
   const componentProps = {
     email : parentData.email,
-    amount : 1000000,
+    amount : 200000,
     metadata: {
       studentName: studentData.surname + studentData.otherNames,
       parentName : parentData.surname + parentData.otherNames,
@@ -105,9 +129,7 @@ console.log(studentData)
     return await response.json
   }
 
-  
 
-  
 
   return (
     <div className={styles.formDiv}>
@@ -145,15 +167,17 @@ console.log(studentData)
           <label>Reason for Leaving Former your School</label>
           <input  type="text" value={reason} onChange={e => setReason(e.target.value)} className={styles.input} />
         </div>
+        <div className={styles.inputDiv}>
+          <label>upload your passport</label>
+           <input type="file" name="myImage" onChange={e => setImage(e.target.files[0])} />
+        </div>
       </form>
       <div className={styles.btnDiv}>
       {
 
-      !formFilled ? 
-        <button type='submit' onClick={handleSubmitButton} className={styles.payBtn}>FINISH &#8594;</button>
+      imageUrl === null || '' ? 
+        <button type='submit' onClick={handleSubmitButton} className={styles.payBtn}>{btnPress ? "Finishing..." : "FINISH"} </button>
       :
-
-        
          <PaystackButton className="paystack-button" {...componentProps}  className={styles.paystackButton}/> }
       </div>
     </div>

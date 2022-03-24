@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@prisma/client": "^3.11.0",
+    "axios": "^0.26.1",
     "cookie": "^0.4.2",
     "cookies-next": "^2.0.4",
+    "formidable": "^2.0.1",
     "framer-motion": "^6.2.8",
     "next": "latest",
     "next-redux-wrapper": "^7.0.5",

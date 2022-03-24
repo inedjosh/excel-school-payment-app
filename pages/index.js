@@ -49,22 +49,15 @@ function Home() {
 
   return (
     <div className={styles.home}>
+    <div className={styles.overlay}></div>
     <Head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
       <title>Home</title>
     </Head>
-      <div className={styles.overlay}></div>
-      <div className={styles.backgroundImageDiv}>
-      <Image 
-      src={background}
-      alt='backgroundImage'
-className={styles.backgroundImg} 
-
-      />
       
-      </div>
+    
       <div className={styles.container}>
         <div className={styles.mobileHeader} onClick={handleMobileNav}>
           {!mobileNav ? (
