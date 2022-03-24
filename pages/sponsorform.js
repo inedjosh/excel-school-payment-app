@@ -32,9 +32,9 @@ function Form() {
   const handleNextButton = () => {
     if(surname.trim() === '' || otherNames.trim() === '' || dob.trim() === '' || age.trim() === '' || gender.trim()  === '' || state.trim() === '' || nationality.trim() === '' || religion.trim() === '' || address.trim() === '' || phone.trim() === '' || relationship.trim() === '' || occupation.trim() === '' || status.trim() === '' ){
       setError(true);
-      alert(123)
+      
       console.log(surname, otherNames, dob, age, gender, state, nationality, religion, address, phone, relationship, occupation, status)
-    }else{alert(2345)
+    }else{
       setError(false)
       setRedirect(true)
 
