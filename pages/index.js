@@ -24,8 +24,8 @@ function Home() {
   const MobileShown = (
     <motion.div
       className={styles.mobileShown}
-      animate={mobileNav ? {   y: 0 }: {y:1000}}
-      initial={{y: 1000 }}
+      animate={mobileNav ? {   y: 0 }: {y:-1000}}
+      initial={{y: -1000 }}
       transition={{
         delay: 0.1,
         duration: 0.2,
