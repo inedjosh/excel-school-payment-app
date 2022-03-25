@@ -28,7 +28,7 @@ function Home() {
       initial={{y: 1000 }}
       transition={{
         delay: 0.1,
-        duration: 0.5,
+        duration: 0.2,
       }}
     >
       <Link href='/prospect' className={styles.mobileLink}  target='_blank'>View Prospect</Link>
@@ -75,7 +75,7 @@ function Home() {
               initial={{ y: -100 }}
               transition={{
                 delay: 0.2,
-                duration: 2,
+                duration: .5,
                 stiffness: 200,
                 type: "spring",
               }}
@@ -98,7 +98,7 @@ function Home() {
               initial={{ y: -100 }}
               transition={{
                 delay: 0.2,
-                duration: 2,
+                duration: .7,
                 stiffness: 200,
                 type: "spring",
               }}
@@ -118,7 +118,7 @@ function Home() {
         <div className={styles.logo}>
         <motion.div  initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2, type: "fade", duration: 2 }}>
+            transition={{ delay: 1, type: "fade", duration: 2 }}>
           <Image
             src={logo}
             alt="logo "

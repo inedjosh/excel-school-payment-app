@@ -9,10 +9,11 @@
   font-family: "Nunito Sans", sans-serif;
   background-image: url("./../images/background-3.jpg");
  background-color: #cccccc;
-background-position: center; /* Center the image */
+background-position: center; 
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; 
-
+padding:0;
+margin:0;
 }
 .mobileShown {
   display: none;

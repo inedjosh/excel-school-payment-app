@@ -17,8 +17,10 @@ function Form({data}) {
   const [reason, setReason] = useState('')
    const [error, setError] = useState(null)
    const [success, setSuccess] = useState(false)
-   const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null)
+   const [sponsorImage, setSponsorImage] = useState(null);
+   const [studentImage, setStudentImage] = useState(null);
+  const [studentImageUrl, setStudentImageUrl] = useState(null)
+  const [sponsorImageUrl, setSponsorImageUrl] = useState(null)
   const [btnPress, setBtnPress] = useState(false)
   
 
@@ -27,6 +29,29 @@ function Form({data}) {
    
   //   form
   // }
+
+  const handleStudentImageSelect = (e) => {
+    const image = e.target.files[0]
+    console.log(image.size)
+    if(image.size > 50000){
+      setStudentImage('')
+      alert('Image size to large, image should not exceed 5mb')
+    }else{
+  setStudentImage(image)
+    }
+  
+  }
+
+  const handleSponsorImageSelect = (e) => {
+     const image = e.target.files[0]
+    if(image.size > 50000){
+      setSponsorImage('')
+      alert('Image size to large, image should not exceed 5mb')
+    }else{
+  setSponsorImage(image)
+    }
+  
+  }
 
 
   const handleSubmitButton = async () => {
@@ -37,22 +62,36 @@ function Form({data}) {
     }else{
       setError(false)
 setBtnPress(true)
- const formData = new FormData();
- formData.append('file', image)
- formData.append('upload_preset', 'eag-passport')
+ const formDataOne = new FormData();
+ const formDataTwo = new FormData();
+ formDataOne.append('file', studentImage)
+ formDataOne.append('upload_preset', 'eag-passport')
+ formDataTwo.append('file', sponsorImage)
+ formDataTwo.append('upload_preset', 'eag-passport')
 
 
 
-     const data = await fetch('https://api.cloudinary.com/v1_1/beam-innovations/image/upload', {
+     const dataOne = await fetch('https://api.cloudinary.com/v1_1/beam-innovations/image/upload', {
        method: 'POST',
-       body: formData
+       body: formDataOne
      }).then((response) => {
        setBtnPress(false)
       return response.json()
 
      })
+     const dataTwo = await fetch('https://api.cloudinary.com/v1_1/beam-innovations/image/upload', {
+       method: 'POST',
+       body: formDataTwo
+     }).then((response) => {
+       setBtnPress(false)
+      return response.json()
+
+     })
+     
  setBtnPress(false)
-setImageUrl(data?.secure_url)
+setStudentImageUrl(dataOne?.secure_url)
+setSponsorImageUrl(dataTwo?.secure_url)
+
   }
   }
 
@@ -114,7 +153,9 @@ console.log(studentData)
   primarySchoolWithDate : primarySchoolDate,
   secondarySchoolWithDate : secondarySchoolDate,
   lastClass : lastClass,
-  reasonForLiving : reason
+  reasonForLiving : reason,
+  studentPassport: studentImageUrl,
+  sponsorPassport: sponsorImageUrl
       })
     })
 
@@ -168,14 +209,18 @@ console.log(studentData)
           <input  type="text" value={reason} onChange={e => setReason(e.target.value)} className={styles.input} />
         </div>
         <div className={styles.inputDiv}>
-          <label>upload your passport</label>
-           <input type="file" name="myImage" onChange={e => setImage(e.target.files[0])} />
+          <label>upload your passport (students passport)</label>
+           <input type="file" name="myImage"  onChange={e => handleStudentImageSelect(e)} />
+        </div>
+        <div className={styles.inputDiv}>
+          <label>upload your passport (sponsors passport)</label>
+           <input type="file" name="myImage"  onChange={e => handleSponsorImageSelect(e)} />
         </div>
       </form>
       <div className={styles.btnDiv}>
       {
 
-      imageUrl === null || '' ? 
+      studentImageUrl === null || '' && sponsorImageUrl === null || '' ? 
         <button type='submit' onClick={handleSubmitButton} className={styles.payBtn}>{btnPress ? "Finishing..." : "FINISH"} </button>
       :
          <PaystackButton className="paystack-button" {...componentProps}  className={styles.paystackButton}/> }

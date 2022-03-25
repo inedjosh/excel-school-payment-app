@@ -41,6 +41,8 @@ model studentRegistration {
   secondarySchoolWithDate String
   lastClass String
   reasonForLiving String
+  studentPassport String
+  sponsorPassport String
 
 
 }

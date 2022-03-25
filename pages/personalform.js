@@ -28,12 +28,13 @@ function Form() {
     const [cookie, setCookie] = useCookies(["studentData"])
 
  
-  const handleNextButton = () => {
+  const handleNextButton = async () => {
     if(surname.trim() === '' || otherNames.trim() === '' || dob.trim() === '' || age.trim() === '' || gender.trim()  === '' || placeOfBirth.trim() === '' || town.trim() === '' || lga.trim() === '' || state.trim() === '' || nationality.trim() === '' || healthHistory.trim() === ''){
       setError(true);
     }else{
       setError(false)
       setRedirect(true)
+      
       const data = {
         surname,
         otherNames,
@@ -49,6 +50,7 @@ function Form() {
        healthHistory,
        others
       }
+      
      setCookie("studentData", JSON.stringify(data))
     }
   }
