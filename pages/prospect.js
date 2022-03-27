@@ -29,8 +29,8 @@ function prospect() {
     text: "Pay Now!",
     onSuccess: () =>{
       let bool = {data: true}
-     setCookie("prospectusCheck", JSON.stringify(bool))
       setSuccess(true)
+      sessionStorage.setItem('check', JSON.stringify(bool))
     },
     onClose: () => alert("Are you sure you want to quit now ? "),
   }
@@ -53,7 +53,7 @@ function prospect() {
   <h2>Download School prospectus</h2>
 
 
-      <div className={styles.topic}><p> To download the prospectus, you are expected to pay the sum of ₦5,178. Thanks</p></div>
+      <div className={styles.topic}><p> To download/print the prospectus, you are expected to pay the sum of ₦5,178. Thanks</p></div>
        {/* {
         error && <p style={{paddingLeft: 20, color:'red'}}>Please fill in all input fields!</p>
       } */}

@@ -3,26 +3,15 @@ import styles from './../styles/prospect.module.css'
 import { parseCookies} from './../helpers/index'
 import Router from 'next/router'
 
-function Ega(data) {
+function Ega() {
 
-
-  
-   let formatData;
     
  useEffect(() => {
-     if(Object.keys(data).length === 0 ){
+     if(!sessionStorage.getItem('check')){
          setAccessCheck(false)
          Router.push('/prospect') 
-     }else{
-          formatData = JSON.parse(data.data)
-     }
-     if(formatData?.data !== true){
-        setAccessCheck(false)
-         Router.push('/prospect')
-     }else {
-         setAccessCheck(true)
-        
-         
+     }else{  
+        setAccessCheck(true)
      }
  }, [])
 
@@ -423,12 +412,12 @@ return(
 )
 }
 
-Ega.getInitialProps = ({req}) => {
-  const cookies = parseCookies(req)
+// Ega.getInitialProps = ({req}) => {
+//   const cookies = parseCookies(req)
 
-  return{
-    data: cookies.prospectusCheck
- }
-}
+//   return{
+//     data: cookies.prospectusCheck
+//  }
+// }
 
 export default Ega
