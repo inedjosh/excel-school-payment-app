@@ -16,7 +16,7 @@ function success() {
       />
 
       <h1>Thank You!</h1>
-      <p>Your payment has been received and your data has been recorded! we will get back to you shortly</p>
+      <p>Your payment has been received and your data has been recorded! Your receipt for payment has been sent to your mail, that will be your proof of payment.</p>
       <Link href='/'>Go back home</Link>
     </div>
   )

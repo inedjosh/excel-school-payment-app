@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+.prospect{
+    font-family: nunito;
+    padding: 0 20px;
+    border: 1px solid #ccc;
+    margin:  20px;
+}
+.li{
+    list-style: none;
+}
+.h3{
+    font-weight: 900;
+}
+.table, .th, .td{
+    border: 1px solid #000;
+}
+.table{
+    border-collapse: collapse;
+    width: 100%
+}

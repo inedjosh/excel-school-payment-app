@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Head from 'next/head'
 import React, {useState} from 'react'
 import styles from  "./../styles/app.module.css";
-import background from "./../images/background-3.jpg";
 import logo from "./../images/logo-wide.png";
 import Image from 'next/image'
 import {
@@ -31,7 +30,9 @@ function Home() {
         duration: 0.2,
       }}
     >
-      <Link href='/prospect' className={styles.mobileLink}  target='_blank'>View Prospect</Link>
+      <Link href='/prospect' className={styles.mobileLink}  target='_blank'>
+       <a className={styles.mobileLink}  href='https://www.excelgraceacademy.com' target='_blank'>View Prospect</a>
+      </Link>
       <a className={styles.mobileLink}  href='https://www.excelgraceacademy.com' target='_blank'>School Details</a>
       <div className={styles.mobileIconDiv}>
         <a href="https://facebook.com" target="_blank">
@@ -51,9 +52,7 @@ function Home() {
     <div className={styles.home}>
     <div className={styles.overlay}></div>
     <Head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
+   
       <title>Home</title>
     </Head>
       
@@ -161,7 +160,7 @@ function Home() {
             </motion.button>
           </Link>
         </div>
-        <p className={styles.footer}>Designed by beam studious</p>
+        <p className={styles.footer}>Powered by beam studious</p>
       </div>
     </div>
   );

@@ -22,17 +22,13 @@ function Form({data}) {
   const [studentImageUrl, setStudentImageUrl] = useState(null)
   const [sponsorImageUrl, setSponsorImageUrl] = useState(null)
   const [btnPress, setBtnPress] = useState(false)
-  
+  const [attest, setAttest] = useState(false)
 
-  // const uploadImage = (files) => {
-  //   console.log(files[0])
-   
-  //   form
-  // }
+  
 
   const handleStudentImageSelect = (e) => {
     const image = e.target.files[0]
-    console.log(image.size)
+    
     if(image.size > 50000){
       setStudentImage('')
       alert('Image size to large, image should not exceed 5mb')
@@ -53,14 +49,18 @@ function Form({data}) {
   
   }
 
+  const handleCheck = () => {
+    setAttest(!attest)
+  }
+
 
   const handleSubmitButton = async () => {
-    if(admissionClass.trim() === '' || lastClass.trim() === '' ||  reason.trim() === '' ){
+    if(admissionClass.trim() === '' || lastClass.trim() === '' ||  reason.trim() === '' || studentImage === null || sponsorImage === null || attest === false){
       setError(true)
-      setImageUploaded(false)
-      
+   
     }else{
       setError(false)
+      
 setBtnPress(true)
  const formDataOne = new FormData();
  const formDataTwo = new FormData();
@@ -97,11 +97,10 @@ setSponsorImageUrl(dataTwo?.secure_url)
 
   const parentData = JSON.parse(data.parentData)
   const studentData = JSON.parse(data.studentData)
-console.log(parentData)
-console.log(studentData)
+
   const componentProps = {
     email : parentData.email,
-    amount : 200000,
+    amount : 203100,
     metadata: {
       studentName: studentData.surname + studentData.otherNames,
       parentName : parentData.surname + parentData.otherNames,
@@ -161,12 +160,11 @@ console.log(studentData)
 
     if(!response.ok){
       const error = await response.json()
-      console.log(error)
+     
     }
 
     const resData = await response.json()
-    console.log(resData)
-
+ 
     return await response.json
   }
 
@@ -175,16 +173,14 @@ console.log(studentData)
   return (
     <div className={styles.formDiv}>
       <Head>
-       <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
+     
       <title>Form</title>
     </Head>
       <h2>Admission form</h2>
 
       <div className={styles.topic}>ACADEMICS</div>
        {
-        error && <p style={{paddingLeft: 20, color:'red'}}>Please fill in all input fields!</p>
+        error && <p style={{paddingLeft: 20, color:'red'}}>Please fill in all input fields correctly!</p>
       }
       <form className={styles.form}>
         <div className={styles.inputDiv}>
@@ -208,13 +204,18 @@ console.log(studentData)
           <label>Reason for Leaving Former your School</label>
           <input  type="text" value={reason} onChange={e => setReason(e.target.value)} className={styles.input} />
         </div>
-        <div className={styles.inputDiv}>
+        <div className={styles.inputDivImg}>
           <label>upload your passport (students passport)</label>
            <input type="file" name="myImage"  onChange={e => handleStudentImageSelect(e)} />
         </div>
-        <div className={styles.inputDiv}>
+        <div className={styles.inputDivImg}>
           <label>upload your passport (sponsors passport)</label>
            <input type="file" name="myImage"  onChange={e => handleSponsorImageSelect(e)} />
+        </div>
+        <div className={styles.inputDivFull}>
+          <input type="checkbox" name="myImage" onChange={handleCheck} />
+          <label>We (both applicant & sponsor) certify that the information given above are true and correct. If in the course of study the school discovers she/her has been misled, we will forfeit all benefit that may be entitled to us.</label>
+         
         </div>
       </form>
       <div className={styles.btnDiv}>

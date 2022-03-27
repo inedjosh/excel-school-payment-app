@@ -13,5 +13,5 @@ export default async(req, res) => {
     res.json(registeredStudent)
 
     const response = await res.json(registeredStudent)
-    console.log(response)
+    
 }

@@ -34,7 +34,7 @@ function Form() {
     }else{
       setError(false)
       setRedirect(true)
-      
+
       const data = {
         surname,
         otherNames,
@@ -65,9 +65,7 @@ function Form() {
   return (
     <div className={styles.formDiv}>
       <Head>
-       <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
+     
       <title>Form</title>
     </Head>
       <h2>Admission form</h2>

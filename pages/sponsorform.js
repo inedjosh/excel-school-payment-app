@@ -5,6 +5,7 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import Link from 'next/link'
 import Router from 'next/router'
 import { useCookies } from "react-cookie"
+import isEmail from "validator/lib/isEmail";
 
 function Form() {
 
@@ -30,10 +31,9 @@ function Form() {
 
  
   const handleNextButton = () => {
-    if(surname.trim() === '' || otherNames.trim() === '' || dob.trim() === '' || age.trim() === '' || gender.trim()  === '' || state.trim() === '' || nationality.trim() === '' || religion.trim() === '' || address.trim() === '' || phone.trim() === '' || relationship.trim() === '' || occupation.trim() === '' || status.trim() === '' ){
+    if(surname.trim() === '' || otherNames.trim() === '' || dob.trim() === '' || age.trim() === '' || gender.trim()  === '' || state.trim() === '' || nationality.trim() === '' || religion.trim() === '' || address.trim() === '' || phone.trim() === '' || relationship.trim() === '' || occupation.trim() === '' || status.trim() === '' || !isEmail(email) ){
       setError(true);
       
-      console.log(surname, otherNames, dob, age, gender, state, nationality, religion, address, phone, relationship, occupation, status)
     }else{
       setError(false)
       setRedirect(true)
@@ -71,9 +71,7 @@ function Form() {
   return (
     <div className={styles.formDiv}>
       <Head>
-       <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
+     
       <title>Form</title>
     </Head>
       <h2>Admission form</h2>
@@ -81,7 +79,7 @@ function Form() {
     
       <div className={styles.topic}>SPONSORS DATA</div>
         {
-        error && <p style={{paddingLeft: 20, color:'red'}}>Please fill in all input fields!</p>
+        error && <p style={{paddingLeft: 20, color:'red'}}>Please fill in all input fields correctly!</p>
       }
       <form className={styles.form}>
         <div className={styles.inputDiv}>
@@ -129,7 +127,7 @@ function Form() {
         </div>
         <div className={styles.inputDiv}>
           <label>Email Address </label>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} className={styles.input} />
+          <input type="email" value={email} onChange={e => setEmail(e.target.value.trim())} className={styles.input} />
         </div>
         <div className={styles.inputDiv}>
           <label>Phone No(s)</label>

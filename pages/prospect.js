@@ -1,41 +1,59 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Link from 'next/link'
 import { PaystackButton } from 'react-paystack'
 import styles from './../styles/form.module.css'
 import Head from 'next/head'
+import Propectus from '../components/Propectus'
+import {  Packer } from "docx";
+import { saveAs } from "file-saver";
+import Router from 'next/router'
+import { useCookies } from "react-cookie"
 
 function prospect() {
 
    const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [success, setSuccess] = useState(false)
+      const [cookie, setCookie] = useCookies(["prospectusCheck"])
+
+      //  setCookie("prospectusCheck", false)
 
   const componentProps = {
     email : email,
-    amount : 200000,
+    amount : 517800,
     metadata: {
       studentName: name,
      
     },
     publicKey: 'pk_test_d74b9a28b8d8c20f686a6db6fa7e656238454016',
     text: "Pay Now!",
-    onSuccess: () =>{saveDataOnDb();
+    onSuccess: () =>{
+      let bool = {data: true}
+     setCookie("prospectusCheck", JSON.stringify(bool))
       setSuccess(true)
     },
     onClose: () => alert("Are you sure you want to quit now ? "),
   }
 
+   useEffect(() => {
+  
+   if(success === true ){
+       Router.push('/ega')
+   }
+ });
+
+
+
   return (
     <div className={styles.formDiv}>
      <Head>
-       <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
+      
       <title>Form</title>
     </Head>
   <h2>Download School prospectus</h2>
 
 
-      <div className={styles.topic}><p>To download the prospect, your'e expected to pay a non-refundable sum of ₦2,000</p></div>
+      <div className={styles.topic}><p> To download the prospectus, you are expected to pay the sum of ₦5,178. Thanks</p></div>
        {/* {
         error && <p style={{paddingLeft: 20, color:'red'}}>Please fill in all input fields!</p>
       } */}
