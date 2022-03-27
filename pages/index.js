@@ -141,7 +141,7 @@ function Home() {
             }}
           >
             <h1>Welcome to Excelgrace Academy Gboko</h1>
-            <p>The school for the child you love...</p>
+          
           </motion.div>
           <Link href="/personalform">
             <motion.button
