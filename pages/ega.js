@@ -371,10 +371,8 @@ English and Mathematics Texts Books are to be supplied by the School.
 </div>
 <div>
     <h3 className={styles.h3}>FEES STRUCTURE</h3>
-    <p>The School fees shall be communicated later and it should paid into any of the school account below</p>
-    <p>Polaris Bank: 4130004106</p>
-    <p>Union Bank: 0036577614</p>
-    <p>Unity Bank: 0021242135</p>
+    <p>All fresh students are to pay #170,000 in addition to the #50,000 deposit. Bringing the total to #220,000 only.</p>
+   
 </div>
 <div>
     <p>The Following personal items shall be given to the students on resumption. </p>
