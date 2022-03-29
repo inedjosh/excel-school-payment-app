@@ -156,7 +156,7 @@ function Home() {
                 type: "spring",
               }}
             >
-              Register Now &#8594;
+              Purchase Form &#8594;
             </motion.button>
           </Link>
         </div>

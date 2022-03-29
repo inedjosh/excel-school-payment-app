@@ -1,6 +1,6 @@
 import {PrismaClient} from '@prisma/client'
 
-const prisma = new PrismaClient()
+export const prisma = new PrismaClient()
 
 export default async(req, res) => {
 
@@ -15,3 +15,5 @@ export default async(req, res) => {
     const response = await res.json(registeredStudent)
     
 }
+
+ prisma

@@ -15,6 +15,17 @@
 .formDiv h2 {
   text-align: center;
 }
+.div{
+  font-family: nunito;
+}
+.list{
+  border-bottom: 1px solid #ccc;
+  width: 100vw;
+  list-style:none;
+}
+.listItem{
+  cursor:pointer ;
+}
 .topic {
   background: rgba(4, 146, 4, 0.789);
   text-align: center;
@@ -27,15 +38,55 @@
   display: flex;
   flex-wrap: wrap;
 }
+.container{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  border: 1px solid #ccc
+}
 .inputDiv {
   width: 45%;
   margin: 10px;
   display: flex;
   flex-direction: column;
 }
+.topicAdmin{
+  width: 100%;
+  text-align: center;
+  background-color: rgba(4, 146, 4, 0.789);
+  color: #fff;
+  font-family: nunito;
+  padding: 5px 0;
+}
+.adminBtn{
+  background: rgba(4, 146, 4, 0.789);
+  border: 1px solid rgba(4, 146, 4, 0.789);
+  padding: 10px 60px;
+  font-family:nunito;
+  font-size: 20px;
+  color: white;
+  margin-top: 20px;
+  /* width: 50%; */
+  margin-bottom: 50px;
+}
 .inputDivImg{
    width: 45%;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+.passport{
+  width:100px;
+  height: 130px;
+}
+
+.inputDivAdmin {
+
+   width: 60%;
+  /* margin: 10px; */
   display: flex;
   flex-direction: column;
   font-size: 14px;
