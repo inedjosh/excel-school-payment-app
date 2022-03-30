@@ -7,7 +7,7 @@ import {prisma} from './api/register'
 
 
 function admin({data}) {
-console.log(data);
+// console.log(data);
 
    
 
@@ -24,14 +24,7 @@ console.log(data);
     const handleLogin = (e) => {
         
         e.preventDefault()
-        //  data.find(detail => {
-        // console.log(userName === detail.userName )
-        // console.log(password === detail.password)
-    // })
-    // data.forEach(detail => {
-    //     console.log(userName === detail.userName )
-    //     console.log(password === detail.password)
-    // })
+
        if(userName !== admin.userName || password !== admin.password ){
            setSuccess((MdFormatLineSpacing))
           setErr('Login details are not correct, check and retry!') 

@@ -7,11 +7,11 @@ import Image from 'next/image'
 function myrecord({data}) {
   const router = useRouter()
   const { id } = router.query
-
-  
+// console.log(data)
+  // if()
   const obj = data.find(record => record.id == id)
  
-  
+  if(obj !== undefined){
   return (
     <div className={styles.form}>
     <h3  className={styles.topicAdmin}>Student's Data</h3>
@@ -21,7 +21,7 @@ function myrecord({data}) {
                 
                 <img src={obj.studentPassport}  alt={'students passport'} className={styles.passport}  />
                     <p> Name: {obj.studentName}</p>
-                    <p> Date of Birth: {obj.studentDob}</p>
+                    {/* <p> Date of Birth: {obj.studentDob}</p>
                     <p> Age: {obj.studentAge}</p>
                     <p> Gender: {obj.studentGender}</p>
                     <p> State: {obj.studentState}</p>
@@ -55,16 +55,21 @@ function myrecord({data}) {
                     <p>Primary school attended with date: {obj.primarySchoolWithDate}</p>
                     <p>Secondary school attended with dat: {obj.secondarySchoolWithDate}</p>
                     <p>Last class : {obj.lastClass}</p>
-                    <p>Reason for living: {obj.reasonForLiving}</p>
-                    </div>
-  
+                    <p>Reason for living: {obj.reasonForLiving}</p>*/}
+
+                    </div>   
     </div>
   )
 }
 
+
+return(
+  <div>loading....</div>
+)
+}
 export default myrecord
 
-export async function getServerSideProps()  {
+export async function getStaticProps()  {
 
   const studentData = await prisma.studentRegistration.findMany()
 
