@@ -3,11 +3,13 @@ import React, {useState, useEffect} from 'react'
 import { MdFormatLineSpacing } from 'react-icons/md';
 import styles from  "./../styles/form.module.css";
 import Router from 'next/router'
+import {prisma} from './api/register'
 
 
-function admin() {
+function admin({data}) {
+console.log(data);
 
-
+   
 
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
@@ -22,6 +24,14 @@ function admin() {
     const handleLogin = (e) => {
         
         e.preventDefault()
+        //  data.find(detail => {
+        // console.log(userName === detail.userName )
+        // console.log(password === detail.password)
+    // })
+    // data.forEach(detail => {
+    //     console.log(userName === detail.userName )
+    //     console.log(password === detail.password)
+    // })
        if(userName !== admin.userName || password !== admin.password ){
            setSuccess((MdFormatLineSpacing))
           setErr('Login details are not correct, check and retry!') 
@@ -61,3 +71,16 @@ function admin() {
 
 export default admin
 
+
+export async function getStaticProps()  {
+    
+
+  const studentData = await prisma.admin.findMany()
+
+  return{
+      props:{
+          data:studentData
+      }
+  }
+
+}

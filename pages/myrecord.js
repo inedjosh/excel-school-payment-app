@@ -8,7 +8,7 @@ function myrecord({data}) {
   const router = useRouter()
   const { id } = router.query
 
-//   console.log(data)
+  
   const obj = data.find(record => record.id == id)
  
   

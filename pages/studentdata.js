@@ -56,7 +56,8 @@ const [accessCheck, setAccessCheck] = useState('')
 
 export default studentData
 
-export async function getServerSideProps()  {
+export async function getStaticProps()  {
+    
 
   const studentData = await prisma.studentRegistration.findMany()
 
