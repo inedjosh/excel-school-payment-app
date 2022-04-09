@@ -1,13 +1,13 @@
-import { clientPromise } from "../../lib/mongodb";
+// import { clientPromise } from "../../lib/mongodb";
 
-export default async(req, res) => {
-    const { db } = await clientPromise();
+// export default async(req, res) => {
+//     const { db } = await clientPromise();
 
-    const data = req.query;
+//     const data = req.query;
 
-    const response = await db.collection('studentData').insertOne(data)
+//     const response = await db.collection('studentData').insertOne(data)
 
-    res.json(response);
+//     res.json(response);
     
-}
+// }
 

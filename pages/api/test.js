@@ -1,13 +1,19 @@
-import { clientPromise } from "../../lib/mongodb";
+// import { dbConnect } from "../../lib/mongodb";
+// import User from './../../model/userModel'
 
-export default async (req, res) => {
-    const client = await clientPromise
-    const { fieldvalue } = req.query
-    const database = client.db('excel');
-    const userdb = await database.collection('studentData')
-      .find({ "<field>": `${ fieldvalue }` })
-      .project({ "_id": 0 })
-      .toArray();
-  res.json(userdb)
-}
+  
+
+// export default async (req, res) => {
+
+//   await dbConnect()
+  
+//   try{
+//  const result = await User.create({userName: 'admin001', password: 'admin098'})
+//   console.log(result)
+//   res.send('okay')
+//   }catch(err){
+//     console.log(err)
+//   }
+
+// }
 

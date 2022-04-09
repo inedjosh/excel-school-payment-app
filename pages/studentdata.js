@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import {prisma} from './api/register'
 import styles from  "./../styles/form.module.css";
 import Router from 'next/router'
 import Link from 'next/link'
+import { dbConnect } from "../lib/mongodb";
+import Student from './../model/studentModel'
 
 
 function studentData({data}) {
@@ -33,10 +34,10 @@ const [accessCheck, setAccessCheck] = useState('')
     <div>
         {
             data.map(record => (
-                <div key={record.id}>
+                <div key={record._id}>
                     <Link href={{
                         pathname: '/myrecord',
-                        query: {id: record.id}
+                        query: {id: record._id}
                     }}>
                        
                            <ul className={styles.list}>
@@ -57,13 +58,16 @@ const [accessCheck, setAccessCheck] = useState('')
 export default studentData
 
 export async function getStaticProps()  {
-    
 
-  const studentData = await prisma.studentRegistration.findMany()
+ await dbConnect()
+
+    const result = await Student.find({})
+
+    const data = JSON.parse(JSON.stringify(result))
 
   return{
       props:{
-          data:studentData
+          data:data
       }
   }
 

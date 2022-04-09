@@ -1,13 +1,14 @@
-import { Styles } from 'docx'
+
 import React, {useState, useEffect} from 'react'
 import { MdFormatLineSpacing } from 'react-icons/md';
 import styles from  "./../styles/form.module.css";
 import Router from 'next/router'
-import {prisma} from './api/register'
+import { dbConnect } from "../lib/mongodb";
+import User from './../model/userModel'
 
 
 function admin({data}) {
-console.log(data[0].userName);
+console.log(data[0]._id);
 
    
 
@@ -63,11 +64,15 @@ export default admin
 export async function getStaticProps()  {
     
 
-  const studentData = await prisma.admin.findMany()
+   await dbConnect()
+
+    const result = await User.find({})
+
+    const data = JSON.parse(JSON.stringify(result))
 
   return{
       props:{
-          data:studentData
+          data:data
       }
   }
 

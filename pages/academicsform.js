@@ -127,8 +127,9 @@ setSponsorImageUrl(dataTwo?.secure_url)
  });
 
   const saveDataOnDb = async ()  => {
-    const response = await fetch('/api/register', {
+    const response = await fetch('/api/addStudent', {
       method: 'POST',
+      header:{ 'Content-Type': 'application/json'},
       body: JSON.stringify({
          studentName : studentData.surname + " " + studentData.otherNames,
   studentAge : studentData.age,
@@ -163,7 +164,8 @@ setSponsorImageUrl(dataTwo?.secure_url)
       })
     })
     const res = await response.json()
-    console.log(res)
+    
+   
   }
 
 

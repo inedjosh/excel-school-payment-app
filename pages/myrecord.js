@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import {prisma} from './api/register'
+import { dbConnect } from "../lib/mongodb";
+import Student from './../model/studentModel'
 import styles from  "./../styles/form.module.css";
 import Image from 'next/image'
 
@@ -9,7 +10,7 @@ function myrecord({data}) {
   const { id } = router.query
 // console.log(data)
   // if()
-  const obj = data.find(record => record.id == id)
+  const obj = data.find(record => record._id == id)
  
   if(obj !== undefined){
   return (
@@ -71,11 +72,15 @@ export default myrecord
 
 export async function getStaticProps()  {
 
-  const studentData = await prisma.studentRegistration.findMany()
+ await dbConnect()
+
+    const result = await Student.find({})
+
+    const data = JSON.parse(JSON.stringify(result))
 
   return{
       props:{
-          data:studentData
+          data:data
       }
   }
 
