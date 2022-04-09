@@ -1,246 +1,168 @@
+import Link from 'next/link'
 import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
+import React, {useState} from 'react'
+import styles from  "./../styles/app.module.css";
+import logo from "./../images/logo-wide.png";
+import Image from 'next/image'
+import {
+  GrFacebookOption,
+  GrTwitter,
+  GrInstagram,
+  GrClose,
+} from "react-icons/gr";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { motion } from "framer-motion";
 
-export default function Home({ isConnected }) {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+function Home() {
+  const [mobileNav, setMobileNav] = useState(false);
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
-        </h1>
+  const handleMobileNav = () => {
+    setMobileNav(!mobileNav);
+  };
 
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
-            for instructions.
-          </h2>
-        )}
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
+  const MobileShown = (
+    <motion.div
+      className={styles.mobileShown}
+      animate={mobileNav ? {   y: 0 }: {y:-1000}}
+      initial={{y: -1000 }}
+      transition={{
+        delay: 0.1,
+        duration: 0.2,
+      }}
+    >
+      <Link href='/prospect' className={styles.mobileLink}  target='_blank'>
+       <a className={styles.mobileLink}   target='_blank'>View Prospect</a>
+      </Link>
+      <a className={styles.mobileLink}  href='https://www.excelgraceacademy.com' target='_blank'>School Details</a>
+      <div className={styles.mobileIconDiv}>
+        <a href="https://facebook.com" target="_blank">
+          <GrFacebookOption className={styles.iconMobile} />
         </a>
-      </footer>
+        <a href="https://twitter.com" target="_blank">
+          <GrTwitter className={styles.iconMobile} />
+        </a>
+        <a href="https://instagram.com" target="_blank">
+          <GrInstagram className={styles.iconMobile} />
+        </a>
+      </div>
+    </motion.div>
+  );
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .subtitle {
-          font-size: 2rem;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
+  return (
+    <div className={styles.home}>
+    <div className={styles.overlay}></div>
+    <Head>
+   
+      <title>Home</title>
+    </Head>
+      
+    
+      <div className={styles.container}>
+        <div className={styles.mobileHeader} onClick={handleMobileNav}>
+          {!mobileNav ? (
+            <HiOutlineMenuAlt3 style={{ fontSize: 20 }} />
+          ) : (
+            <GrClose />
+          )}
+        </div>
+        <div>{ MobileShown }</div>
+        <div className={styles.header}>
+          <div className={styles.alignRight}>
+            <motion.nav
+              className={styles.nav}
+              animate={{ y: 0 }}
+              initial={{ y: -100 }}
+              transition={{
+                delay: 0.2,
+                duration: .5,
+                stiffness: 200,
+                type: "spring",
+              }}
+            >
+              <Link href="/prospect" className={styles.link}>
+               
+                 <a className={styles.link}>
+               View Prospect
+              </a>
+              </Link>
+              <a  href='https://www.excelgraceacademy.com' target='_blank' className={styles.link}>
+               School Details
+              </a>
+            </motion.nav>
+          </div>
+          <div className={styles.alignLeft}>
+            <motion.div
+              className={styles.socialMedia}
+              animate={{ y: 0 }}
+              initial={{ y: -100 }}
+              transition={{
+                delay: 0.2,
+                duration: .7,
+                stiffness: 200,
+                type: "spring",
+              }}
+            >
+              <a href="https://facebook.com" target="_blank">
+                <GrFacebookOption className={styles.icon} />
+              </a>
+              <a href="https://twitter.com" target="_blank">
+                <GrTwitter className={styles.icon} />
+              </a>
+              <a href="https://instagram.com" target="_blank">
+                <GrInstagram className={styles.icon} />
+              </a>
+            </motion.div>
+          </div>
+        </div>
+        <div className={styles.logo}>
+        <motion.div  initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, type: "fade", duration: 2 }}>
+          <Image
+            src={logo}
+            alt="logo "
+            className={styles.logoImg}
+          />
+          </motion.div>
+          <motion.div
+            initial={{ x: "-100vw" }}
+            animate={{ x: 0 }}
+            transition={{
+              delay: 2,
+              type: "spring",
+              duration: 2,
+              stiffness: 250,
+            }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <h1>Welcome to Excelgrace Academy Gboko</h1>
+          
+          </motion.div>
+          <Link href="/personalform">
+            <motion.button
+              type="button"
+              className={styles.button}
+              animate={{ y: 0 }}
+              initial={{ y: 300 }}
+              transition={{
+                delay: 0.4,
+                duration: 4,
+                stiffness: 200,
+                type: "spring",
+              }}
+            >
+              Purchase Form &#8594;
+            </motion.button>
+          </Link>
+        </div>
+        <p className={styles.footer}>Powered by beam studious</p>
+      </div>
     </div>
-  )
+  );
 }
 
-export async function getServerSideProps(context) {
-  try {
-    await clientPromise
-    // `await clientPromise` will use the default database passed in the MONGODB_URI
-    // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the folloing code:
-    //
-    // `const client = await clientPromise`
-    // `const db = client.db("myDatabase")`
-    //
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
-
-    return {
-      props: { isConnected: true },
-    }
-  } catch (e) {
-    console.error(e)
-    return {
-      props: { isConnected: false },
-    }
-  }
-}
+export default Home;
