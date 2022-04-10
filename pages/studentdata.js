@@ -61,7 +61,7 @@ export async function getStaticProps()  {
 
  await dbConnect()
 
-    const result = await Student.find({})
+    const result = await Student.find()
 
     const data = JSON.parse(JSON.stringify(result))
 
