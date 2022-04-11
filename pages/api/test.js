@@ -1,19 +1,23 @@
-// import { dbConnect } from "../../lib/mongodb";
-// import User from './../../model/userModel'
+import { dbConnect } from "../../lib/mongodb";
+import Student from './../../model/studentModel'
 
   
 
-// export default async (req, res) => {
+export async function loadData() {
 
-//   await dbConnect()
+  await dbConnect()
   
-//   try{
-//  const result = await User.create({userName: 'admin001', password: 'admin098'})
-//   console.log(result)
-//   res.send('okay')
-//   }catch(err){
-//     console.log(err)
-//   }
+  try{
+    const result = await Student.find({})
+    console.log(result)
+const data = await result.json()
 
-// }
+const results = JSON.parse(JSON.stringify(data))
+
+return results
+  }catch(err){
+    console.log(err)
+  }
+
+}
 

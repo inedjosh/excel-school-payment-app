@@ -6,6 +6,7 @@ import { dbConnect } from "../lib/mongodb";
 import Student from './../model/studentModel'
 
 
+
 function studentData({data}) {
 
    
@@ -59,7 +60,7 @@ export default studentData
 
 export async function getStaticProps()  {
 
- await dbConnect()
+     await dbConnect()
 
     const result = await Student.find()
 
