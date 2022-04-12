@@ -54,7 +54,7 @@ function myrecord({data}) {
      <div className={styles.div}>
                     <p>Admission Class: {obj.admissionClass}</p>
                     <p>Primary school attended with date: {obj.primarySchoolWithDate}</p>
-                    <p>Secondary school attended with dat: {obj.secondarySchoolWithDate}</p>
+                    <p>Secondary school attended with date: {obj.secondarySchoolWithDate}</p>
                     <p>Last class : {obj.lastClass}</p>
                     <p>Reason for living: {obj.reasonForLiving}</p>
 
@@ -70,7 +70,7 @@ return(
 }
 export default myrecord
 
-export async function getStaticProps()  {
+export async function getServerSideProps()  {
 
  await dbConnect()
 
