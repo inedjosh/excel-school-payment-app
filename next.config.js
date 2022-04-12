@@ -1,8 +1,8 @@
-module.exports = {
+exports = {
   async headers() {
     return [
       {
-        source: '/studentdata',
+        source: '/student',
         headers: [
           
           {

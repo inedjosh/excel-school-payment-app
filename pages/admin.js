@@ -30,7 +30,7 @@ function admin({data}) {
 
     useEffect(() => {
         if(success === true){
-   Router.push('/studentdata')
+   Router.push('/student')
         }
     }, [success])
 
