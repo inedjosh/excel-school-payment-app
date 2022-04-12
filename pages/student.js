@@ -3,7 +3,7 @@ import styles from  "./../styles/form.module.css";
 import Router from 'next/router'
 import Link from 'next/link'
 import { dbConnect } from "../lib/mongodb";
-import Student from './../model/studentModel'
+import Student from '../model/studentModel'
 
 
 
@@ -58,7 +58,7 @@ const [accessCheck, setAccessCheck] = useState('')
 
 export default studentData
 
-export async function getStaticProps()  {
+export async function getServerSideProps()  {
 
      await dbConnect()
 
