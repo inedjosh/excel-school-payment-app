@@ -1,13 +1,12 @@
-// import { clientPromise } from "../../lib/mongodb";
+import User from './../../model/userModel'
+import { dbConnect } from "../../lib/mongodb";
 
-// export default async(req, res) => {
-//     const { db } = await clientPromise();
+export default async(req, res) => {
+    await dbConnect()
 
-//     const data = req.query;
+    const response = await User.create({userName: 'admin001', password: 'admin098'})
 
-//     const response = await db.collection('studentData').insertOne(data)
-
-//     res.json(response);
+    res.json(response);
     
-// }
+}
 
