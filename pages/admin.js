@@ -8,9 +8,6 @@ import User from './../model/userModel'
 
 
 function admin({data}) {
-console.log(data[0]._id);
-
-   
 
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
