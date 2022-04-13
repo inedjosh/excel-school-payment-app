@@ -43,8 +43,11 @@ const [accessCheck, setAccessCheck] = useState('')
                        
                            <ul className={styles.list}>
                                <li  className={styles.listItem}>
-                                   {record.id} {record.studentName}
+                                   Name: <span className={styles.boldText}> {record.studentName}</span>
+                                  
                                </li>
+                               <li className={styles.listItem}>Email: <span className={styles.boldText}> {record.parentEmail}</span></li>
+                               <li className={styles.listItem}>Phone Number: <span className={styles.boldText}> {record.parentPhoneNumber}</span></li>
                            </ul>
                     
                     </Link>

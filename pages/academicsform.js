@@ -218,7 +218,7 @@ setSponsorImageUrl(dataTwo?.secure_url)
         </div>
         <div className={styles.inputDivFull}>
           <input type="checkbox" name="myImage" onChange={handleCheck} />
-          <label>We (both applicant & sponsor) certify that the information given above are true and correct. If in the course of study the school discovers she/her has been misled, we will forfeit all benefit that may be entitled to us.</label>
+          <label>We (both applicant & sponsor) certify that the information given above are true and correct. If in the course of study the school discovers she has been misled, we will forfeit all benefit that may be entitled to us.</label>
          
         </div>
       </form>
