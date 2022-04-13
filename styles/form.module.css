@@ -25,6 +25,10 @@
 }
 .listItem{
   cursor:pointer ;
+  font-family: nunito;
+}
+.boldText{
+  font-weight: bolder;
 }
 .topic {
   background: rgba(4, 146, 4, 0.789);
