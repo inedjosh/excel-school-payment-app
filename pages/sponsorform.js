@@ -77,7 +77,7 @@ function Form() {
       <h2>Admission form</h2>
 
     
-      <div className={styles.topic}>SPONSORS DATA</div>
+      <div className={styles.topic}>SPONSOR'S DATA</div>
         {
         error && <p style={{paddingLeft: 20, color:'red'}}>Please fill in all input fields correctly!</p>
       }
@@ -96,7 +96,7 @@ function Form() {
         </div>
         <div className={styles.inputDiv}>
           <label>Age </label>
-          <input type="number" value={age} onChange={e => setAge(e.target.value)} className={styles.input} />
+          <input type="text" value={age} onChange={e => setAge(e.target.value)} className={styles.input} />
         </div>
         <div className={styles.inputDiv}>
           <label>Sex</label>

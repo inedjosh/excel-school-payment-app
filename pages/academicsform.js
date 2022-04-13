@@ -27,11 +27,13 @@ function Form({data}) {
   
 
   const handleStudentImageSelect = (e) => {
-    const image = e.target.files[0]
-    
-    if(image.size > 50000){
-      setStudentImage('')
-      alert('Image size to large, image should not exceed 5mb')
+    const image = e.target?.files[0]
+    const imageSize = e.target?.files[0].size/1024
+   
+    if(imageSize > 9900){
+      setStudentImage(null)
+      alert('Image size to large, image should not exceed 10mb')
+      return
     }else{
   setStudentImage(image)
     }
@@ -39,9 +41,11 @@ function Form({data}) {
   }
 
   const handleSponsorImageSelect = (e) => {
-     const image = e.target.files[0]
-    if(image.size > 50000){
-      setSponsorImage('')
+     const image = e.target?.files[0]
+       const imageSize = e.target?.files[0].size/1024
+       
+    if(imageSize > 9900){
+      setSponsorImage(null)
       alert('Image size to large, image should not exceed 5mb')
     }else{
   setSponsorImage(image)
@@ -205,7 +209,7 @@ setSponsorImageUrl(dataTwo?.secure_url)
           <input  type="text" value={reason} onChange={e => setReason(e.target.value)} className={styles.input} />
         </div>
         <div className={styles.inputDivImg}>
-          <label>upload your passport (Candidates passport)</label>
+          <label>upload your passport (Candidate's passport)</label>
            <input type="file" name="myImage"  onChange={e => handleStudentImageSelect(e)} />
         </div>
         <div className={styles.inputDivImg}>
@@ -220,7 +224,6 @@ setSponsorImageUrl(dataTwo?.secure_url)
       </form>
       <div className={styles.btnDiv}>
       {
-
       studentImageUrl === null || '' && sponsorImageUrl === null || '' ? 
         <button type='submit' onClick={handleSubmitButton} className={styles.payBtn}>{btnPress ? "Finishing..." : "FINISH"} </button>
       :
